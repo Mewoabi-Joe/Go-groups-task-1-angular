@@ -1,0 +1,129 @@
+<section
+  *ngIf="!loading"
+  [ngStyle]="{
+    'height.px': maxViewportHeight,
+    'background-color': '#1e213a'
+  }"
+  class="d-flex flex-column justify-content-evenly"
+>
+  <div class="d-flex justify-content-evenly align-items-center pb-5 pt-3">
+    <button
+      class="btn btn-secondary"
+      style="border-radius: 0px"
+      type="button"
+      data-bs-toggle="offcanvas"
+      data-bs-target="#offcanvasExample"
+      aria-controls="offcanvasExample"
+    >
+      Search for places
+    </button>
+    <span class="material-symbols-outlined"> my_location </span>
+  </div>
+  <img
+    style="width: 200px; height: 200px"
+    src="{{ image }}"
+    alt=""
+    class="img-fluid align-self-center"
+  />
+  <!-- src="{{ 'assets/images/' + image }}" -->
+
+  <p *ngIf="isDegree">
+    <span style="font-size: 7rem" class="display-1">{{
+      weather?.current?.temp_c
+    }}</span>
+    <span class="display-5"><sup>0</sup></span
+    ><span class="display-2">C</span>
+  </p>
+  <p *ngIf="!isDegree">
+    <span style="font-size: 7rem" class="display-1">{{
+      weather?.current?.temp_f
+    }}</span>
+    <span class="display-5"><sup>0</sup></span
+    ><span class="display-2">F</span>
+  </p>
+  <p class="h1">{{ weather?.current?.condition?.text }}</p>
+  <p class="lead">Today . {{ today }}</p>
+  <div class="d-flex justify-content-center">
+    <span class="material-symbols-outlined"> location_on </span>
+    <p>
+      {{
+        weather?.location?.name +
+          " " +
+          weather?.location?.region +
+          " " +
+          weather?.location?.country
+      }}
+    </p>
+  </div>
+
+  <!-- Offcanvas -->
+  <div
+    [ngStyle]="{
+      'width.px':
+        viewportWidth >= 1200 ? (viewportWidth * 1) / 3 : viewportWidth,
+      'background-color': '#1e213a'
+    }"
+    class="offcanvas offcanvas-start text-white"
+    data-bs-backdrop="false"
+    tabindex="-1"
+    id="offcanvasExample"
+    aria-labelledby="offcanvasExampleLabel"
+    #theOffCanvas
+  >
+    <div class="offcanvas-header d-flex justify-content-end">
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="offcanvas"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="offcanvas-body p-4 d-flex flex-column align-items-center">
+      <div class="border border-secondary w-75 d-flex py-2 mb-4">
+        <span class="material-symbols-outlined px-2 mx-1 d-bock"> search </span
+        ><input
+          style="
+            width: 80%;
+            height: 100%;
+            color: rgb(145, 138, 130);
+            background-color: #1e213a;
+          "
+          placeholder="Search location"
+          class="text-white d-block"
+          type="text"
+          name="searchTerm"
+          [(ngModel)]="searchTerm"
+        />
+        <span
+          (click)="clearSearch()"
+          *ngIf="searchTerm"
+          class="material-symbols-outlined px-2 mx-1 d-bock pointer"
+        >
+          close
+        </span>
+      </div>
+      <!-- <button class="btn btn-primary" style="border-radius: 0px">
+            Search
+          </button> -->
+      <p
+        class="text-start w-75 mb-3 pointer"
+        *ngFor="let location of locations | searchFilter: searchTerm"
+        (click)="makeSearch(location)"
+      >
+        {{ location.name }} {{ location.region }} {{ location.country }}
+      </p>
+    </div>
+  </div>
+</section>
+<section
+  *ngIf="loading"
+  [ngStyle]="{
+    'height.px': maxViewportHeight,
+    'background-color': '#1e213a'
+  }"
+  class="d-flex flex-column justify-content-center align-items-center"
+>
+  <div class="spinner-border text-light" role="status">
+    <span class="visually-hidden">Loading...</span>
+  </div>
+</section>

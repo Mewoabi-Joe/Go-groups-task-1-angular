@@ -1,0 +1,24 @@
+<div class="row g-0">
+  <div class="col-xl-4 text-center">
+    <app-section-one
+      [isDegree]="isDegree"
+      [loading]="loading"
+      [today]="today"
+      [image]="image"
+      [latitude]="latitude"
+      [longitude]="longitude"
+      [logAndLatSet]="logAndLatSet"
+      [weather]="weather"
+      (onLocationClick)="handleSearch($event)"
+    ></app-section-one>
+  </div>
+  <div class="col">
+    <app-section-two
+      [sectionTwoLoading]="sectionTwoLoading"
+      [isDegree]="isDegree"
+      [forecasts]="forecasts"
+      [weather]="weather"
+      (changedToDegree)="handleChangedToDegree($event)"
+    ></app-section-two>
+  </div>
+</div>

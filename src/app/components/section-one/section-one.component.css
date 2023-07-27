@@ -1,0 +1,17 @@
+input:hover,
+input:active,
+input:focus {
+  border-radius: 0px;
+  border-color: transparent;
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}
+
+input {
+  border-radius: 0px;
+  border-color: transparent;
+  outline: 0px !important;
+  -webkit-appearance: none;
+  box-shadow: none !important;
+}

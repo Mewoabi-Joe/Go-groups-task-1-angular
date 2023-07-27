@@ -1,0 +1,31 @@
+<div
+  class="card d-flex flex-column justify-content-around align-items-center"
+  style="height: 155px; background-color: #1e213a"
+>
+  <p *ngIf="cardNo !== 1">{{ forecast!.date | stringToFormattedDate }}</p>
+  <p *ngIf="cardNo == 1">Tomorrow</p>
+  <img
+    src="{{ forecast?.day?.condition?.icon }}"
+    alt=""
+    class="img-fluid align-self-center rounded-3 w-25"
+  />
+  <small
+    *ngIf="isDegree"
+    style="font-size: 0.8rem"
+    class="d-flex justify-content-between"
+  >
+    <p>
+      <span>{{ forecast?.day?.maxtemp_c }}</span
+      ><sup>0</sup>C
+    </p>
+    <p class="ps-5">{{ forecast?.day?.mintemp_c }}<sup>0</sup>C</p>
+  </small>
+  <small
+    *ngIf="!isDegree"
+    style="font-size: 0.8rem"
+    class="d-flex justify-content-between"
+  >
+    <p>{{ forecast?.day?.maxtemp_f }}<sup>0</sup>F</p>
+    <p class="ps-5">{{ forecast?.day?.maxtemp_f }}<sup>0</sup>F</p>
+  </small>
+</div>

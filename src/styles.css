@@ -1,0 +1,32 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway&display=swap");
+body {
+  font-family: "Raleway", sans-serif !important;
+}
+
+p {
+  margin: 0px !important;
+}
+
+.pointer:hover {
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+progress {
+  background: #1e213a;
+  border-radius: 5px;
+}
+progress::-moz-progress-bar {
+  background: #1e213a;
+  border-radius: 5px;
+}
+progress::-webkit-progress-value {
+  border-radius: 5px;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
+  background: #ffec65;
+}
+progress::-webkit-progress-bar {
+  background: white;
+  border-radius: 5px;
+}

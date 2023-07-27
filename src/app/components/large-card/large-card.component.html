@@ -1,0 +1,45 @@
+<div
+  class="card d-flex flex-column justify-content-around align-items-center"
+  style="height: 150px; background-color: #1e213a"
+>
+  <p>{{ name }}</p>
+  <p>
+    <span style="font-size: 4rem" class="h1">{{ value }}</span>
+    <span class="display-5">{{ unit }}</span>
+  </p>
+  <small
+    *ngIf="unit == 'mph'"
+    style="font-size: 0.7rem"
+    class="w-50 d-flex justify-content-center align-items-center"
+  >
+    <p
+      [ngStyle]="{
+        transform: 'rotate(' + windDeg + 'deg)'
+      }"
+    >
+      <span class="material-symbols-outlined"> assistant_navigation </span>
+    </p>
+    <p class="ps-4">{{ windDir }}</p>
+  </small>
+  <small
+    style="font-size: 60%"
+    class="d-flex flex-column justify-content-center w-75"
+    *ngIf="unit == '%'"
+  >
+    <div class="d-flex justify-content-between">
+      <p class="p-0 m-0">0</p>
+      <p class="p-0 m-0">50</p>
+      <p class="p-0 m-0">100</p>
+    </div>
+    <progress
+      class="p-0 m-0 w-100"
+      *ngIf="unit == '%'"
+      progress
+      [attr.value]="value"
+      max="100"
+    >
+      {{ value }}%
+    </progress>
+    <p class="align-self-end p-0 m-0">%</p>
+  </small>
+</div>
